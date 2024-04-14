@@ -43,7 +43,9 @@ class MainActivity : ComponentActivity() {
             val count = remember {
                 mutableStateOf(0)
             }
-            val list = listOf("child 1", "child 2", "child 3")
+            val list = remember{
+               mutableStateOf(listOf("child 0"))
+            }
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -60,12 +62,16 @@ class MainActivity : ComponentActivity() {
 
                     ElevatedCard(
                         elevation = CardDefaults.cardElevation(
-                            defaultElevation = 8.dp
+                            defaultElevation = 8.dp,
+
                         ),
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
                                 count.value++
+                                val l:MutableList<String> = list.value.toMutableList()
+                                l.add("child ${count.value}")
+                                list.value = l
                             },
                         shape = RoundedCornerShape(10.dp),
 
@@ -89,7 +95,7 @@ class MainActivity : ComponentActivity() {
                     )
 
                     LazyColumn() {
-                        itemsIndexed(list) { _, item ->
+                        itemsIndexed(list.value) { _, item ->
                             ElevatedCard(
                                 elevation = CardDefaults.cardElevation(
                                     defaultElevation = 8.dp
