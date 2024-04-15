@@ -62,7 +62,6 @@ class MainViewModel @Inject constructor(
     fun addChild() {
         try {
             val idCurrent = _currentParent.value?.id ?: 0L
-         //   val listParents = (_currentParent.value?.parents) ?: mutableListOf()
             val listParents = (_currentParent.value?.parents)?.toMutableList() ?: mutableListOf()
             if (!listParents.contains(idCurrent)) {
                 listParents.add(_currentParent.value?.id ?: 0L)
@@ -71,7 +70,6 @@ class MainViewModel @Inject constructor(
                 name = hashText,
                 idParent = _currentParent.value?.id ?: 0,
                 parents = listParents.toList(),
-            //    parents = listParents,
             )
             repository.add(nodeItem)
             _dataChildren.value = repository.getAllChildren(_currentParent.value?.id ?: 0L)
