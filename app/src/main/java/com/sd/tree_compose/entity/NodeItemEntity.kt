@@ -38,6 +38,6 @@ fun stringToList(str: String) = str
     .toList()
     .map {
         it.toLong()
-}
+    }
 
 fun List<NodeItemEntity>.toDto(): List<NodeItem> = map(NodeItemEntity::toDto)

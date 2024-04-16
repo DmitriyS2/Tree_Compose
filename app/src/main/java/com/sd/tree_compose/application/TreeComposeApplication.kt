@@ -4,4 +4,4 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class TreeComposeApplication:Application()
+class TreeComposeApplication : Application()
